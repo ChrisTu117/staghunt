@@ -116,8 +116,9 @@ target harder.
   sum of all `ft_balance_of` always equals `ft_total_supply`.
 - **No admin.** `new` is `#[private]` (only the contract account can call it, in the
   deploy transaction). No method changes the parameters, mints outside the rules or
-  upgrades the code. The final step for the live deployment is deleting the contract
-  account's last access key (`npm run check:live -- --locked` verifies it).
+  upgrades the code. The live contract account `staghunt.testnet` has no access keys
+  at all (deleted on 2026-11-09), so nobody can redeploy or change it;
+  `npm run check:live -- --locked` verifies this.
 - **Low cost for the user.** Joining a hunt is one transaction; collecting a result
   needs none (it happens inside your next transaction).
 
