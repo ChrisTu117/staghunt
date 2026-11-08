@@ -1,0 +1,20 @@
+{
+  "name": "staghunt",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "node scripts/build-web.mjs",
+    "serve": "python3 -m http.server 8080 --directory docs",
+    "demo": "node scripts/demo-testnet.mjs",
+    "check:live": "node scripts/check-live.mjs",
+    "check:abi": "node scripts/check-abi.mjs",
+    "sim": "python3 sim/scenarios.py"
+  },
+  "dependencies": {
+    "near-api-js": "7.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "util": "0.12.5"
+  }
+}

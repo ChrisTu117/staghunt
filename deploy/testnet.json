@@ -1,0 +1,17 @@
+{
+  "network": "testnet",
+  "contract": "staghunt.testnet",
+  "config": {
+    "round_secs": 120,
+    "reward_bps": 1000,
+    "burn_bps": 500,
+    "start_target_bps": 1000,
+    "target_step_up_bps": 500,
+    "target_step_down_bps": 500,
+    "min_target_bps": 100,
+    "max_target_bps": 6000,
+    "min_hunters": 3,
+    "faucet_amount": "100000000000000000000",
+    "faucet_closes_at_ms": 1798675200000
+  }
+}

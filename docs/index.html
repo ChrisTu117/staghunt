@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STAG · the stag hunt coin</title>
+  <meta name="description" content="A NEP-141 memecoin on NEAR whose supply follows a repeated stag hunt: coordinate and it grows, scatter and it burns." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>STAG <span class="sub">the stag hunt coin</span></h1>
+      <p class="lede">Every round, holders can lock STAG into a hunt. If the hunters <b>together</b> lock enough of all STAG, every hunter gets their stake back plus a bonus. If they fall short, every hunter loses a slice, which is burned. Supply grows when the community coordinates and shrinks when it doesn't.</p>
+      <p class="meta"><span id="network"></span> · contract <a id="contract-link" target="_blank" rel="noopener"></a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p id="error" class="toast err" hidden></p>
+    <p id="toast" class="toast" hidden></p>
+
+    <section class="grid">
+      <article class="card hunt">
+        <div class="row head"><h2 id="round">Hunt</h2><span class="clock" title="time left in this hunt" id="clock">–:––</span></div>
+        <div class="row"><span class="muted">Pot</span><b><span id="pot">–</span> STAG</b></div>
+        <div class="row"><span class="muted">Needed (<span id="target-pct">–</span> of supply)</span><b><span id="target">–</span> STAG</b></div>
+        <div class="bar"><div id="bar"></div></div>
+        <div class="row"><span class="muted">Hunters / needed</span><b id="hunters">–</b></div>
+        <p id="outlook" class="outlook"></p>
+      </article>
+
+      <article class="card">
+        <h2>You</h2>
+        <div id="me"></div>
+      </article>
+
+      <article class="card">
+        <h2>Supply</h2>
+        <div class="row"><span class="muted">Total supply</span><b><span id="supply">–</span> STAG</b></div>
+        <div class="row"><span class="muted">Minted by hunts</span><b id="minted">–</b></div>
+        <div class="row"><span class="muted">Burned by hunts</span><b id="burned">–</b></div>
+        <div class="row"><span class="muted">Win streak</span><b id="streak">–</b></div>
+        <div class="row"><span class="muted">Record</span><span id="record">–</span></div>
+        <svg id="chart" viewBox="0 0 600 120" preserveAspectRatio="none" aria-label="supply after each hunt"></svg>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Rules (fixed at launch, no admin key)</h2>
+      <ol class="rules">
+        <li>A hunt lasts <b id="rule-round">–</b>. During it, anyone holding STAG can lock some into the pot. Locked STAG cannot move until the hunt closes.</li>
+        <li>When it closes, the hunt <b>succeeds</b> if the pot is at least the target share of <i>all</i> STAG in existence and at least <b id="rule-hunters">–</b> accounts joined. Every hunter gets the stake back <b>+<span id="rule-reward">–</span></b>, newly minted. The target rises by <span id="rule-up">–</span>.</li>
+        <li>Otherwise it <b>fails</b>: every hunter gets the stake back <b>−<span id="rule-burn">–</span></b>, burned. The target falls by <span id="rule-down">–</span>. A hunt nobody joins also lowers the target.</li>
+        <li>The first target is <b id="rule-target">–</b>; it always stays between <span id="rule-min">–</span> and <span id="rule-max">–</span>.</li>
+        <li>Results appear the moment a hunt closes. No keeper or backend is involved: the next transaction of any kind settles it on-chain.</li>
+      </ol>
+      <details><summary>Raw parameters from <code>get_config</code></summary><pre id="config-json"></pre></details>
+    </section>
+
+    <section class="card">
+      <h2>Closed hunts</h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Hunt</th><th>Closed</th><th>Pot / target</th><th>Hunters</th><th>Result</th><th>Supply change</th></tr></thead>
+          <tbody id="rounds"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Built at NEAR HACKATHON. Testnet only: STAG has no value. Source and tests: <a href="https://github.com/ChrisTu117/staghunt">github.com/ChrisTu117/staghunt</a>.</p>
+  </footer>
+  <script type="module" src="app.js?v=1bf26e0da0"></script>
+</body>
+</html>
