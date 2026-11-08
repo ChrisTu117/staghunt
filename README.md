@@ -138,7 +138,7 @@ target harder.
 | Starter faucet: once per account, closes on its date | unit `faucet_*` tests; sandbox second claim fails |
 | Nobody else can initialize the contract | sandbox `nobody_else_can_initialize` |
 | No admin method exists | `npm run check:abi` |
-| The live contract is this code with these parameters | `npm run check:live` |
+| The live contract is this code with these parameters, and nobody holds a key to its account | `npm run check:live -- --locked` |
 
 ## Simulation: why these parameters
 
